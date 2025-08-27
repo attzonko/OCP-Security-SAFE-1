@@ -7,12 +7,12 @@ $$measurement-values-map-extension //= (
 
 ocp-safe-sfr-map = non-empty<{
    &(review-framework-version: 0) => tstr
-   &(methodology: 1) => "whitebox" / "blackbox"
+   &(methodology: 1) => methodology-enum
    &(completion-date: 2) => time
    &(scope-number: 3) => integer
-  ? &(device-category: 4) => "storage" / "network" / "gpu" / "cpu" / "apu" / "bmc"
+  ? &(device-category: 4) => device-category-enum
   ? &(repo-tag: 5) => tstr
-  ? &(fw-version: 6) => tstr
+  ? &(fw-version: 6) => version-map
   ? &(fw-file-digests: 7) => digests-type
   ? &(manifest-digest: 8) => digest
   ? &(manifest: 9) => [ + manifest-entry ]
@@ -20,7 +20,18 @@ ocp-safe-sfr-map = non-empty<{
   ? &(cvss-version: 11) => tstr
   ? &(issues: 12) => [ + issue-entry ]
   * $$ocp-safe-sfr-ext
-}>
+}
+
+methodology-enum = 0 / 1
+; 0: whitebox, 1: blackbox
+
+device-category-enum = 0 / 1 / 2 / 3 / 4 / 5
+; 0: storage, 1: network, 2: gpu, 3: cpu, 4: apu, 5: bmc
+
+version-map = {
+  &(version: 0) => tstr,
+  ? &(version-scheme: 1) => tstr
+}
 
 issue-entry = {
   &(title: 0) => tstr
