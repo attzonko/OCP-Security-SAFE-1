@@ -19,6 +19,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ruby
           sudo gem install cddl
+          sudo gem install cddlc
           sudo gem install cbor-diag
 
       - name: Convert DIAG to CBOR
