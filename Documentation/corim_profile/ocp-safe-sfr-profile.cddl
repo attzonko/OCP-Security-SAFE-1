@@ -40,7 +40,7 @@ network = 1
 gpu = 2
 cpu = 3
 apu = 4
-bmc =5 
+bmc = 5 
  
 issue-entry = {
   &(title: 0) => tstr
