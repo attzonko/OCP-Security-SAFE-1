@@ -18,8 +18,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ruby
-          gem install cddl
-          gem install cbor-diag
+          sudo gem install cddl
+          sudo gem install cbor-diag
 
       - name: Convert DIAG to CBOR
         run: |
@@ -27,12 +27,11 @@ jobs:
 
       - name: Fetch latest upstream CoRIM CDDL
         run: |
-          curl -L -o corim-base-08-upstream.cddl https://github.com/ietf-rats-wg/draft-ietf-rats-corim/releases/latest/download/corim-autogen.cddl
+          curl -L -o corim-base-upstream.cddl https://github.com/ietf-rats-wg/draft-ietf-rats-corim/releases/latest/download/corim-autogen.cddl
 
       - name: Concatenate the CDDLs
         run: |
-          cat corim-base-08-upstream.cddl > combined.cddl
-          cat Documentation/corim_profile/ocp-safe-sfr-profile.cddl >> combined.cddl
+          cddlc -t cddl corim-base-upstream.cddl Documentation/corim_profile/ocp-safe-sfr-profile.cddl > combined.cddl
 
       - name: Validate CBOR against CDDL
         run: |
