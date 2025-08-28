@@ -55,10 +55,10 @@
                       / comid.mval / 1 : { / measurement-values-map /
                         / ocp-safe-sfr / 1029 : {
                           / 0: review-framework-version / 0: "1.1",
-                          / 1: methodology /              1: 0,  / 0: whitebox, 1: blackbox
+                          / 1: methodology /              1: 0,  / 0: whitebox, 1: blackbox /
                           / 2: completion-date /          2: 1(1687651200),
                           / 3: scope-number /             3: 1,
-                          / 4: device-category /          4: 0,  / 0: storage, 1: network, 2: gpu, 3: cpu, 4: apu, 5: bmc
+                          / 4: device-category /          4: 0,  / 0: storage, 1: network, 2: gpu, 3: cpu, 4: apu, 5: bmc /
                           / 5: repo-tag /                 5: "release_v1_2_3",
                           / 6: fw-version /               6: {
                             / version / 0: "1.2.3",

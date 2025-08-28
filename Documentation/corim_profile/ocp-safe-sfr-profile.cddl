@@ -5,12 +5,12 @@ $$measurement-values-map-extension //= (
   &(ocp-safe-sfr: 1029) => ocp-safe-sfr-map
 )
 
-ocp-safe-sfr-map = non-empty<{
+ocp-safe-sfr-map = {
    &(review-framework-version: 0) => tstr
-   &(methodology: 1) => methodology-enum
+   &(methodology: 1) => $methodology
    &(completion-date: 2) => time
    &(scope-number: 3) => integer
-  ? &(device-category: 4) => device-category-enum
+  ? &(device-category: 4) => $device-category
   ? &(repo-tag: 5) => tstr
   ? &(fw-version: 6) => version-map
   ? &(fw-file-digests: 7) => digests-type
@@ -22,17 +22,26 @@ ocp-safe-sfr-map = non-empty<{
   * $$ocp-safe-sfr-ext
 }
 
-methodology-enum = 0 / 1
-; 0: whitebox, 1: blackbox
+$methodology /= whitebox
+$methodology /= blackbox
 
-device-category-enum = 0 / 1 / 2 / 3 / 4 / 5
-; 0: storage, 1: network, 2: gpu, 3: cpu, 4: apu, 5: bmc
+whitebox = 0
+blackbox = 1
 
-version-map = {
-  &(version: 0) => tstr,
-  ? &(version-scheme: 1) => tstr
-}
+$device-category /= storage
+$device-category /= network
+$device-category /= gpu
+$device-category /= cpu
+$device-category /= apu
+$device-category /= bmc
 
+storage = 0
+network = 1
+gpu = 2
+cpu = 3
+apu = 4
+bmc =5 
+ 
 issue-entry = {
   &(title: 0) => tstr
   &(cvss-score: 1) => tstr
